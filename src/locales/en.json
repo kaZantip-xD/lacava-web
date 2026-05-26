@@ -1,0 +1,50 @@
+{
+	"menu": {
+		"title": "Full Menu",
+		"subtitle": "Fresh breakfast, brunch classics, and artisanal coffee beverages.",
+		"sections": {
+			"brunch": {
+				"title": "Brunch & Plates",
+				"items": [
+					{
+						"name": "Sourdough Avocado Toast",
+						"desc": "Poached free-range egg, heirloom tomatoes, chili flakes."
+					},
+					{
+						"name": "Breakfast Croissant",
+						"desc": "Crispy maple bacon, soft scrambled eggs, aged white cheddar."
+					},
+					{
+						"name": "Superfood Açaí Bowl",
+						"desc": "House granola, organic berries, organic coconut flakes, raw honey."
+					},
+					{
+						"name": "Truffle Mushroom Panini",
+						"desc": "Roasted wild mushrooms, dynamic mozzarella, organic white truffle oil."
+					}
+				]
+			},
+			"drinks": {
+				"title": "Drinks & Brews",
+				"items": [
+					{
+						"name": "Single Origin Pour Over",
+						"desc": "Fresh seasonal micro-lot beans, brewed slow."
+					},
+					{
+						"name": "Ceremonial Matcha Latte",
+						"desc": "Uji stoneground matcha, steamed organic oat milk."
+					},
+					{
+						"name": "Artisanal Chai Tea Latte",
+						"desc": "Slow-simmered black tea spices, organic honey."
+					},
+					{
+						"name": "Cold-Pressed Orange Juice",
+						"desc": "Freshly squeezed in-house every morning."
+					}
+				]
+			}
+		}
+	}
+}

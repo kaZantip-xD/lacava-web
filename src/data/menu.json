@@ -1,0 +1,28 @@
+{
+	"titleKey": "menu.title",
+	"subtitleKey": "menu.subtitle",
+	"sections": [
+		{
+			"id": "brunch",
+			"titleKey": "menu.sections.brunch.title",
+			"icon": "Utensils",
+			"items": [
+				{ "price": "$12" },
+				{ "price": "$9" },
+				{ "price": "$11" },
+				{ "price": "$14" }
+			]
+		},
+		{
+			"id": "drinks",
+			"titleKey": "menu.sections.drinks.title",
+			"icon": "Coffee",
+			"items": [
+				{ "price": "$6" },
+				{ "price": "$6.50" },
+				{ "price": "$5" },
+				{ "price": "$7" }
+			]
+		}
+	]
+}
