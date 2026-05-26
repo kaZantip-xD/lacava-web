@@ -1,50 +1,85 @@
 {
-	"menu": {
-		"title": "Full Menu",
-		"subtitle": "Fresh breakfast, brunch classics, and artisanal coffee beverages.",
-		"sections": {
-			"brunch": {
-				"title": "Brunch & Plates",
-				"items": [
-					{
-						"name": "Sourdough Avocado Toast",
-						"desc": "Poached free-range egg, heirloom tomatoes, chili flakes."
-					},
-					{
-						"name": "Breakfast Croissant",
-						"desc": "Crispy maple bacon, soft scrambled eggs, aged white cheddar."
-					},
-					{
-						"name": "Superfood Açaí Bowl",
-						"desc": "House granola, organic berries, organic coconut flakes, raw honey."
-					},
-					{
-						"name": "Truffle Mushroom Panini",
-						"desc": "Roasted wild mushrooms, dynamic mozzarella, organic white truffle oil."
-					}
-				]
-			},
-			"drinks": {
-				"title": "Drinks & Brews",
-				"items": [
-					{
-						"name": "Single Origin Pour Over",
-						"desc": "Fresh seasonal micro-lot beans, brewed slow."
-					},
-					{
-						"name": "Ceremonial Matcha Latte",
-						"desc": "Uji stoneground matcha, steamed organic oat milk."
-					},
-					{
-						"name": "Artisanal Chai Tea Latte",
-						"desc": "Slow-simmered black tea spices, organic honey."
-					},
-					{
-						"name": "Cold-Pressed Orange Juice",
-						"desc": "Freshly squeezed in-house every morning."
-					}
-				]
-			}
-		}
-	}
+  "nav": {
+    "coffee": "Coffee",
+    "cocktails": "Cocktails",
+    "menu": "Menu",
+    "about": "About Us",
+    "contact": "Contact Us"
+  },
+  "home": {
+    "hero_title": "Coffee by day.",
+    "hero_title_highlight": "Spirits by night.",
+    "hero_subtitle": "Two unique experiences under one roof. Fuel your focus with artisanal coffee during daylight, and unwind with bespoke spirits when darkness falls.",
+    "btn_morning": "Morning Menu",
+    "btn_evening": "Evening Menu",
+    "feature_1_title": "Best Quality",
+    "feature_1_desc": "Sourced from the best organic farms globally.",
+    "feature_2_title": "Fast Delivery",
+    "feature_2_desc": "Fresh coffee and treats delivered hot.",
+    "feature_3_title": "Great Rewards",
+    "feature_3_desc": "Unlock exclusive menu items and discounts.",
+    "coffee_bar_title": "The Coffee Bar",
+    "coffee_bar_desc": "Open 7 AM - 4 PM. Featuring single-origin beans roasted locally, artisan pastries, and a cozy workspace.",
+    "coffee_bar_link": "Explore Coffee",
+    "night_bar_title": "The Night Bar",
+    "night_bar_desc": "Open 5 PM - 1 AM. Dimly lit atmosphere, ambient vinyl tunes, and spirits crafted by expert mixologists.",
+    "night_bar_link": "Explore Cocktails"
+  },
+  "coffee": {
+    "badge": "Daytime Menu",
+    "title": "Specialty Coffee",
+    "subtitle": "Sourced ethically, roasted with love, and engineered with precision."
+  },
+  "cocktails": {
+    "badge": "Evening Menu",
+    "title": "Signature Cocktails",
+    "subtitle": "Sophisticated evening cocktails featuring premium clean spirits and hand-squeezed pure juices."
+  },
+  "menu": {
+    "title": "Full Menu",
+    "subtitle": "Fresh breakfast, brunch classics, and artisanal coffee beverages."
+  },
+  "about": {
+    "title": "Our Story",
+    "paragraph_1": "Founded in 2026, our mission is to elevate your daily beverage ritual into an experience worth slowing down for. We blend the focused energy of coffee with the sophisticated relaxation of spirits.",
+    "paragraph_2": "We source raw beans directly from carbon-neutral cooperative farms, ensuring transparent trade relations and exceptional bean selection. Our commitment extends beyond the cup to every detail on the menu.",
+    "paragraph_3": "When dusk calls, our roastery seamlessly transitions into a lively cocktail bar. The roaring steam wands make way for shaker clinks as we pour craft elixirs until night close.",
+    "values_title": "Our Core Values",
+    "value_1_title": "Community First",
+    "value_1_desc": "Crafting a cozy local space designed for connection, laughter, and work.",
+    "value_2_title": "Locally Rooted",
+    "value_2_desc": "Partnering directly with regional organic dairies and pastry bakers.",
+    "value_3_title": "Zero Compromise",
+    "value_3_desc": "Obsessing over high-quality ingredients, from reverse-osmosis water to premium spirits.",
+    "find_us_title": "Find Us",
+    "btn_map": "View Full Map & Contact Info"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Whether you need to reserve a table, inquire about catering, or just want to say hello, we are here for you.",
+    "form_title": "Send us a message",
+    "label_name": "Full Name",
+    "label_email": "Email Address",
+    "label_message": "Your Message",
+    "placeholder_name": "Your Name",
+    "placeholder_email": "you@example.com",
+    "placeholder_message": "Tell us about your visit or inquiry...",
+    "btn_send": "Send Inquiry",
+    "btn_sending": "Sending Message...",
+    "success_title": "Success!",
+    "success_desc": "Your message has been received. We will respond shortly.",
+    "error_title": "Validation Error",
+    "error_desc": "Please ensure Name, Email, and Message are filled out (Message must be 10+ chars).",
+    "details_title": "Our Details",
+    "location_label": "Location",
+    "location_value": "123 Cafe Lane, City Center, 90210",
+    "email_label": "Email",
+    "email_value": "hello@coff.com",
+    "phone_label": "Phone",
+    "phone_value": "+1 (555) 123-COFF"
+  },
+  "footer": {
+    "copyright": "All rights reserved.",
+    "designed_by": "Designed with"
+  }
 }

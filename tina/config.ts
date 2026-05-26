@@ -1,6 +1,5 @@
 import { defineConfig } from "tinacms";
 
-// Your hosting provider likely exposes this as an environment variable
 const branch =
   process.env.GITHUB_BRANCH ||
   process.env.VERCEL_GIT_COMMIT_REF ||
@@ -9,54 +8,154 @@ const branch =
 
 export default defineConfig({
   branch,
-
-  // Get this from tina.io
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-  // Get this from tina.io
   token: process.env.TINA_TOKEN,
-
   build: {
     outputFolder: "admin",
     publicFolder: "public",
   },
-  // Uncomment to allow cross-origin requests from non-localhost origins
-  // during local development (e.g. GitHub Codespaces, Gitpod, Docker).
-  // Use 'private' to allow all private-network IPs (WSL2, Docker, etc.)
-  // server: {
-  //   allowedOrigins: ['https://your-codespace.github.dev'],
-  // },
   media: {
     tina: {
-      mediaRoot: "",
+      mediaRoot: "uploads",
       publicFolder: "public",
     },
   },
-  // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/r/content-modelling-collections/
   schema: {
     collections: [
       {
-        name: "post",
-        label: "Posts",
-        path: "content/posts",
+        name: "menuCategory",
+        label: "Menu Categories",
+        path: "content/categories",
         fields: [
           {
             type: "string",
+            name: "locale",
+            label: "Language",
+            options: ["en", "ua"],
+            required: true,
+          },
+          {
+            type: "string",
             name: "title",
-            label: "Title",
+            label: "Category Name",
             isTitle: true,
             required: true,
           },
           {
+            type: "string",
+            name: "icon",
+            label: "Icon",
+            description: "Options: Utensils, Coffee, Wine, Beer, CupSoda, Apple, Sandwich, IceCream",
+          },
+          {
+            type: "number",
+            name: "order",
+            label: "Display Order",
+          },
+        ],
+      },
+      {
+        name: "menuItem",
+        label: "Menu Items",
+        path: "content/menu",
+        fields: [
+          {
+            type: "string",
+            name: "locale",
+            label: "Language",
+            options: ["en", "ua"],
+            required: true,
+          },
+          {
+            type: "string",
+            name: "title",
+            label: "Name",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description",
+            ui: { component: "textarea" },
+          },
+          {
+            type: "string",
+            name: "price",
+            label: "Price",
+          },
+          {
+            type: "reference",
+            name: "category",
+            label: "Category",
+            collections: ["menuCategory"],
+          },
+          {
+            type: "image",
+            name: "image",
+            label: "Image",
+          },
+          {
+            type: "number",
+            name: "order",
+            label: "Order (for sorting)",
+          },
+        ],
+      },
+      {
+        name: "pageContent",
+        label: "Page Content",
+        path: "content/pages",
+        format: "json",
+        fields: [
+          {
+            type: "string",
+            name: "locale",
+            label: "Language",
+            options: ["en", "ua"],
+            required: true,
+          },
+          {
+            type: "string",
+            name: "pageId",
+            label: "Page",
+            options: ["home", "about", "contact"],
+            required: true,
+          },
+          {
+            type: "string",
+            name: "heroTitle",
+            label: "Hero Title",
+            ui: { component: "textarea" },
+          },
+          {
+            type: "string",
+            name: "heroSubtitle",
+            label: "Hero Subtitle",
+            ui: { component: "textarea" },
+          },
+          {
+            type: "string",
+            name: "address",
+            label: "Address",
+          },
+          {
+            type: "string",
+            name: "phone",
+            label: "Phone",
+          },
+          {
+            type: "string",
+            name: "email",
+            label: "Email",
+          },
+          {
             type: "rich-text",
             name: "body",
-            label: "Body",
+            label: "Body Content",
             isBody: true,
           },
         ],
-        ui: {
-          // This is an DEMO router. You can remove this to fit your site
-          router: ({ document }) => `/demo/blog/${document._sys.filename}`,
-        },
       },
     ],
   },
