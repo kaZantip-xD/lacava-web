@@ -62,6 +62,11 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         className={`${inter.className} ${currentTheme.bg} text-white font-sans transition-colors duration-700 ease-in-out min-h-screen flex flex-col`}
       >
         <LocaleProvider>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(){var a=document.querySelectorAll("[bis_skin_checked],[__processed]");for(var i=0;i<a.length;i++){a[i].removeAttribute("bis_skin_checked");a[i].removeAttribute("__processed");a[i].removeAttribute("bis_register");}})()`,
+            }}
+          />
           <Header
             currentTheme={currentTheme}
             currentPage={currentPage}
