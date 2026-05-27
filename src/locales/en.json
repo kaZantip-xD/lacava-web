@@ -28,16 +28,46 @@
   "coffee": {
     "badge": "Daytime Menu",
     "title": "Specialty Coffee",
-    "subtitle": "Sourced ethically, roasted with love, and engineered with precision."
+    "subtitle": "Sourced ethically, roasted with love, and engineered with precision.",
+    "items": [
+      { "name": "Espresso", "desc": "Double shot of our rich single-origin espresso." },
+      { "name": "Latte Macchiato", "desc": "Velvety steamed milk with a rich espresso pour." },
+      { "name": "Cold Brew", "desc": "Slow-steeped for 18 hours, served over artisanal ice." },
+      { "name": "Cappuccino", "desc": "Perfect harmony of espresso, steamed milk, and airy foam." },
+      { "name": "Flat White", "desc": "Creamy micro-foam poured delicately over double-shot espresso." },
+      { "name": "Pour Over V60", "desc": "Locally hand-brewed coffee bringing out delicate floral tasting notes." }
+    ]
   },
   "cocktails": {
     "badge": "Evening Menu",
     "title": "Signature Cocktails",
-    "subtitle": "Sophisticated evening cocktails featuring premium clean spirits and hand-squeezed pure juices."
+    "subtitle": "Sophisticated evening cocktails featuring premium clean spirits and hand-squeezed pure juices.",
+    "items": [
+      { "name": "Espresso Martini", "desc": "Premium vodka, fresh espresso, homemade coffee liqueur." },
+      { "name": "Classic Negroni", "desc": "Artisanal gin, sweet vermouth, Campari, fresh orange peel." },
+      { "name": "Smoked Old Fashioned", "desc": "Double oak bourbon, bitters, sugar, smoked cedar wood." },
+      { "name": "Aperol Spritz", "desc": "Prosecco, Aperol, splash of soda, slice of blood orange." },
+      { "name": "Craft Margarita", "desc": "Pure blue agave tequila, fresh key lime juice, organic agave nectar." },
+      { "name": "Whiskey Sour", "desc": "Bourbon, fresh lemon, organic egg white, classic angostura mist." }
+    ]
   },
   "menu": {
     "title": "Full Menu",
-    "subtitle": "Fresh breakfast, brunch classics, and artisanal coffee beverages."
+    "subtitle": "Fresh breakfast, brunch classics, and artisanal coffee beverages.",
+    "items": {
+      "brunch": [
+        { "name": "Sourdough Avocado Toast", "desc": "Poached free-range egg, heirloom tomatoes, chili flakes.", "price": "$12" },
+        { "name": "Breakfast Croissant", "desc": "Crispy maple bacon, soft scrambled eggs, aged white cheddar.", "price": "$9" },
+        { "name": "Superfood Açaí Bowl", "desc": "House granola, organic berries, organic coconut flakes, raw honey.", "price": "$11" },
+        { "name": "Truffle Mushroom Panini", "desc": "Roasted wild mushrooms, dynamic mozzarella, organic white truffle oil.", "price": "$14" }
+      ],
+      "drinks": [
+        { "name": "Single Origin Pour Over", "desc": "Fresh seasonal micro-lot beans, brewed slow.", "price": "$6" },
+        { "name": "Ceremonial Matcha Latte", "desc": "Uji stoneground matcha, steamed organic oat milk.", "price": "$6.50" },
+        { "name": "Artisanal Chai Tea Latte", "desc": "Slow-simmered black tea spices, organic honey.", "price": "$5" },
+        { "name": "Cold-Pressed Orange Juice", "desc": "Freshly squeezed in-house every morning.", "price": "$7" }
+      ]
+    }
   },
   "about": {
     "title": "Our Story",

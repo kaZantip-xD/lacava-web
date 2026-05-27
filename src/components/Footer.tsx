@@ -3,14 +3,14 @@
 import React from "react";
 import { Coffee } from "lucide-react";
 import { Page } from "../types";
-import { useLocale } from "@/lib/LocaleContext";
+import { useTranslation } from "react-i18next";
 
 interface FooterProps {
   onNavigate: (page: Page) => void;
 }
 
 const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
-  const { t } = useLocale();
+  const { t } = useTranslation();
 
   return (
     <footer className='bg-black/60 border-t border-gray-900 mt-auto py-10'>

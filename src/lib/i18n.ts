@@ -1,25 +1,24 @@
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
 import en from "@/locales/en.json";
+import ua from "@/locales/ua.json";
 
-const locales = { en } as const;
-type Locale = keyof typeof locales;
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: { translation: en },
+      ua: { translation: ua },
+    },
+    fallbackLng: "en",
+    interpolation: { escapeValue: false },
+    react: { useSuspense: false },
+    detection: {
+      order: ["localStorage"],
+      caches: ["localStorage"],
+    },
+  });
 
-let currentLocale: Locale = "en";
-
-const translations: Record<string, Record<string, unknown>> = { en };
-
-export function setLocale(locale: Locale) {
-  currentLocale = locale;
-}
-
-export function t(path: string): string {
-  const keys = path.split(".");
-  let result: unknown = translations[currentLocale];
-  for (const key of keys) {
-    if (result && typeof result === "object" && key in result) {
-      result = (result as Record<string, unknown>)[key];
-    } else {
-      return path;
-    }
-  }
-  return typeof result === "string" ? result : path;
-}
+export default i18n;

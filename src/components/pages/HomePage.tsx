@@ -5,7 +5,7 @@ import Image from "next/image";
 import DynamicGradientCard from "@/components/GradientCard";
 import DynamicGradientButton from "@/components/GradientButton";
 import { Theme, Page } from "@/types";
-import { useLocale } from "@/lib/LocaleContext";
+import { useTranslation } from "react-i18next";
 
 interface HomePageProps {
   theme: Theme;
@@ -31,7 +31,7 @@ const getFeatures = (theme: Theme, t: (key: string) => string) => [
 ];
 
 const HomePage: React.FC<HomePageProps> = ({ theme, onNavigate }) => {
-  const { t } = useLocale();
+  const { t } = useTranslation();
   const features = getFeatures(theme, t);
 
   return (

@@ -4,7 +4,7 @@ import DynamicGradientCard from "@/components/GradientCard";
 import DynamicGradientButton from "@/components/GradientButton";
 import { MapPin, Mail, Phone } from "lucide-react";
 import { Theme, Page } from "@/types";
-import { useLocale } from "@/lib/LocaleContext";
+import { useTranslation } from "react-i18next";
 
 interface ContactPageProps {
   theme: Theme;
@@ -12,7 +12,7 @@ interface ContactPageProps {
 }
 
 const ContactPage: React.FC<ContactPageProps> = ({ theme, onNavigate }) => {
-  const { t } = useLocale();
+  const { t } = useTranslation();
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",

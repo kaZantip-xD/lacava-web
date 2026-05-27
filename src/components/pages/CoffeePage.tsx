@@ -4,36 +4,38 @@ import Image from "next/image";
 import DynamicGradientCard from "@/components/GradientCard";
 import { Theme, Page } from "@/types";
 import client from "../../../tina/__generated__/client";
-import { useLocale } from "@/lib/LocaleContext";
+import { useTranslation } from "react-i18next";
 
 interface CoffeePageProps {
   theme: Theme;
   onNavigate: (page: Page) => void;
 }
 
-interface CoffeeItemData {
+interface ItemData {
+  name: string;
+  description?: string;
+  image?: string;
+}
+
+interface CategoryData {
   id: string;
   title: string;
-  description: string;
-  image: string;
-  category: { id: string } | null;
-  order: number;
+  items: ItemData[];
 }
 
 const CoffeePage: React.FC<CoffeePageProps> = ({ theme, onNavigate }) => {
-  const { t } = useLocale();
-  const [coffees, setCoffees] = useState<CoffeeItemData[]>([]);
+  const { t } = useTranslation();
+  const [items, setItems] = useState<ItemData[]>([]);
 
   useEffect(() => {
-    client.queries
-      .menuItemConnection({ sort: "order", last: 50 })
-      .then((res) => {
-        const nodes =
-          res.data.menuItemConnection.edges?.map(
-            (e) => e?.node as CoffeeItemData,
-          ) ?? [];
-        setCoffees(nodes);
-      });
+    client.queries.menuCategoryConnection({ last: 50 }).then((res) => {
+      const nodes =
+        res.data.menuCategoryConnection.edges?.map(
+          (e) => e?.node as unknown as CategoryData,
+        ) ?? [];
+      const coffee = nodes.find((c) => c.id.includes("/coffee"));
+      setItems(coffee?.items ?? []);
+    });
   }, []);
 
   return (
@@ -48,20 +50,20 @@ const CoffeePage: React.FC<CoffeePageProps> = ({ theme, onNavigate }) => {
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-          {coffees.map((drink) => (
-            <DynamicGradientCard key={drink.id} theme={theme}>
+          {items.map((item, idx) => (
+            <DynamicGradientCard key={idx} theme={theme}>
               <div className='relative h-64 rounded-[inherit] overflow-hidden mb-6'>
                 <Image
-                  src={drink.image}
-                  alt={drink.title}
+                  src={item.image ?? ""}
+                  alt={item.name}
                   fill
                   sizes='(max-w-768px) 100vw, 50vw'
                   className='object-cover group-hover:scale-105 transition-transform duration-700'
                 />
               </div>
-              <div className='m-6'>
-                <h3 className='text-2xl font-bold mb-2'>{drink.title}</h3>
-                <p className='text-gray-400 text-sm leading-relaxed'>{drink.description}</p>
+              <div className='p-6'>
+                <h3 className='text-2xl font-bold mb-2'>{item.name}</h3>
+                <p className='text-gray-400 text-sm leading-relaxed'>{item.description}</p>
               </div>
             </DynamicGradientCard>
           ))}

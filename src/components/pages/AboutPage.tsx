@@ -5,7 +5,7 @@ import DynamicGradientCard from "@/components/GradientCard";
 import DynamicGradientButton from "@/components/GradientButton";
 import { Users, MapPin, Coffee } from "lucide-react";
 import { Theme, Page } from "@/types";
-import { useLocale } from "@/lib/LocaleContext";
+import { useTranslation } from "react-i18next";
 
 interface AboutPageProps {
   theme: Theme;
@@ -13,7 +13,7 @@ interface AboutPageProps {
 }
 
 const AboutPage: React.FC<AboutPageProps> = ({ theme, onNavigate }) => {
-  const { t } = useLocale();
+  const { t } = useTranslation();
 
   return (
     <div className='pt-32 pb-20'>

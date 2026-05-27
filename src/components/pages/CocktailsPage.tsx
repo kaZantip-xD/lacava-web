@@ -3,36 +3,38 @@ import React, { useEffect, useState } from "react";
 import DynamicGradientCard from "@/components/GradientCard";
 import { Theme, Page } from "@/types";
 import client from "../../../tina/__generated__/client";
-import { useLocale } from "@/lib/LocaleContext";
+import { useTranslation } from "react-i18next";
 
 interface CocktailsPageProps {
   theme: Theme;
   onNavigate: (page: Page) => void;
 }
 
-interface CocktailItemData {
+interface ItemData {
+  name: string;
+  description?: string;
+  image?: string;
+}
+
+interface CategoryData {
   id: string;
   title: string;
-  description: string;
-  image: string;
-  category: { id: string } | null;
-  order: number;
+  items: ItemData[];
 }
 
 const CocktailsPage: React.FC<CocktailsPageProps> = ({ theme, onNavigate }) => {
-  const { t } = useLocale();
-  const [cocktails, setCocktails] = useState<CocktailItemData[]>([]);
+  const { t } = useTranslation();
+  const [items, setItems] = useState<ItemData[]>([]);
 
   useEffect(() => {
-    client.queries
-      .menuItemConnection({ sort: "order", last: 50 })
-      .then((res) => {
-        const nodes =
-          res.data.menuItemConnection.edges?.map(
-            (e) => e?.node as CocktailItemData,
-          ) ?? [];
-        setCocktails(nodes);
-      });
+    client.queries.menuCategoryConnection({ last: 50 }).then((res) => {
+      const nodes =
+        res.data.menuCategoryConnection.edges?.map(
+          (e) => e?.node as unknown as CategoryData,
+        ) ?? [];
+      const cocktails = nodes.find((c) => c.id.includes("/cocktails"));
+      setItems(cocktails?.items ?? []);
+    });
   }, []);
 
   return (
@@ -47,19 +49,19 @@ const CocktailsPage: React.FC<CocktailsPageProps> = ({ theme, onNavigate }) => {
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-          {cocktails.map((drink) => (
-            <DynamicGradientCard key={drink.id} theme={theme}>
+          {items.map((item, idx) => (
+            <DynamicGradientCard key={idx} theme={theme}>
               <div className='relative h-64 rounded-[inherit] overflow-hidden mb-6'>
                 <img
-                  src={drink.image}
-                  alt={drink.title}
+                  src={item.image ?? ""}
+                  alt={item.name}
                   className='absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700'
                 />
                 <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent'></div>
               </div>
-              <div className='m-6'>
-                <h3 className='text-2xl font-bold mb-2'>{drink.title}</h3>
-                <p className='text-gray-400 text-sm leading-relaxed'>{drink.description}</p>
+              <div className='p-6'>
+                <h3 className='text-2xl font-bold mb-2'>{item.name}</h3>
+                <p className='text-gray-400 text-sm leading-relaxed'>{item.description}</p>
               </div>
             </DynamicGradientCard>
           ))}

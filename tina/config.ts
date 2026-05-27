@@ -20,6 +20,10 @@ export default defineConfig({
       publicFolder: "public",
     },
   },
+  search: {
+    collections: ["menuCategory"],
+    maxDepth: 3,
+  } as any,
   schema: {
     collections: [
       {
@@ -33,6 +37,7 @@ export default defineConfig({
             label: "Language",
             options: ["en", "ua"],
             required: true,
+            description: "Create separate entries for each language (EN = English, UA = Ukrainian)",
           },
           {
             type: "string",
@@ -52,108 +57,41 @@ export default defineConfig({
             name: "order",
             label: "Display Order",
           },
-        ],
-      },
-      {
-        name: "menuItem",
-        label: "Menu Items",
-        path: "content/menu",
-        fields: [
           {
-            type: "string",
-            name: "locale",
-            label: "Language",
-            options: ["en", "ua"],
-            required: true,
-          },
-          {
-            type: "string",
-            name: "title",
-            label: "Name",
-            isTitle: true,
-            required: true,
-          },
-          {
-            type: "string",
-            name: "description",
-            label: "Description",
-            ui: { component: "textarea" },
-          },
-          {
-            type: "string",
-            name: "price",
-            label: "Price",
-          },
-          {
-            type: "reference",
-            name: "category",
-            label: "Category",
-            collections: ["menuCategory"],
-          },
-          {
-            type: "image",
-            name: "image",
-            label: "Image",
-          },
-          {
-            type: "number",
-            name: "order",
-            label: "Order (for sorting)",
-          },
-        ],
-      },
-      {
-        name: "pageContent",
-        label: "Page Content",
-        path: "content/pages",
-        format: "json",
-        fields: [
-          {
-            type: "string",
-            name: "locale",
-            label: "Language",
-            options: ["en", "ua"],
-            required: true,
-          },
-          {
-            type: "string",
-            name: "pageId",
-            label: "Page",
-            options: ["home", "about", "contact"],
-            required: true,
-          },
-          {
-            type: "string",
-            name: "heroTitle",
-            label: "Hero Title",
-            ui: { component: "textarea" },
-          },
-          {
-            type: "string",
-            name: "heroSubtitle",
-            label: "Hero Subtitle",
-            ui: { component: "textarea" },
-          },
-          {
-            type: "string",
-            name: "address",
-            label: "Address",
-          },
-          {
-            type: "string",
-            name: "phone",
-            label: "Phone",
-          },
-          {
-            type: "string",
-            name: "email",
-            label: "Email",
-          },
-          {
-            type: "rich-text",
-            name: "body",
-            label: "Body Content",
-            isBody: true,
+            type: "object",
+            name: "items",
+            label: "Menu Items",
+            list: true,
+            ui: {
+              itemProps: (item) => ({
+                label: item?.name || "New Item",
+              }),
+            },
+            fields: [
+              {
+                type: "string",
+                name: "name",
+                label: "Name",
+                isTitle: true,
+                required: true,
+              },
+              {
+                type: "string",
+                name: "description",
+                label: "Description / Ingredients",
+                ui: { component: "textarea" },
+              },
+              {
+                type: "string",
+                name: "price",
+                label: "Price",
+              },
+              {
+                type: "image",
+                name: "image",
+                label: "Image",
+              },
+            ],
           },
         ],
       },

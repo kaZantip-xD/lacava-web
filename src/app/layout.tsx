@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { getTheme, Page, Theme } from "../types";
-import { LocaleProvider } from "@/lib/LocaleContext";
+import "@/lib/i18n";
 
 // Імпорти сторінок
 import HomePage from "@/components/pages/HomePage";
@@ -61,28 +61,26 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         suppressHydrationWarning
         className={`${inter.className} ${currentTheme.bg} text-white font-sans transition-colors duration-700 ease-in-out min-h-screen flex flex-col`}
       >
-        <LocaleProvider>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `(function(){var a=document.querySelectorAll("[bis_skin_checked],[__processed]");for(var i=0;i<a.length;i++){a[i].removeAttribute("bis_skin_checked");a[i].removeAttribute("__processed");a[i].removeAttribute("bis_register");}})()`,
-            }}
-          />
-          <Header
-            currentTheme={currentTheme}
-            currentPage={currentPage}
-            onNavigate={handleNavigation}
-          />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var a=document.querySelectorAll("[bis_skin_checked],[__processed]");for(var i=0;i<a.length;i++){a[i].removeAttribute("bis_skin_checked");a[i].removeAttribute("__processed");a[i].removeAttribute("bis_register");}})()`,
+          }}
+        />
+        <Header
+          currentTheme={currentTheme}
+          currentPage={currentPage}
+          onNavigate={handleNavigation}
+        />
 
-          <main
-            className={`flex-grow transition-all duration-500 ease-in-out transform ${
-              isTransitioning ? "opacity-0 scale-[0.98]" : "opacity-100 scale-100"
-            }`}
-          >
-            {renderPage()}
-          </main>
+        <main
+          className={`flex-grow transition-all duration-500 ease-in-out transform ${
+            isTransitioning ? "opacity-0 scale-[0.98]" : "opacity-100 scale-100"
+          }`}
+        >
+          {renderPage()}
+        </main>
 
-          <Footer onNavigate={handleNavigation} />
-        </LocaleProvider>
+        <Footer onNavigate={handleNavigation} />
       </body>
     </html>
   );
