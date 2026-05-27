@@ -14,11 +14,13 @@ interface CocktailsPageProps {
 interface MenuItem {
   name: string;
   description?: string;
-  image?: { asset?: { _ref?: string } };
-  imageUrl?: string;
+  image?: {
+    asset?: { _ref?: string };
+    imageUrl?: string;
+  };
 }
 
-const query = groq`*[_type == "menuCategory" && title match "Cocktails" && locale == "en"][0].items`;
+const query = groq`*[_type == "menuCategory" && title match "Cocktails" && locale == "en"][0].items[showOnPreview == true]`;
 
 const CocktailsPage: React.FC<CocktailsPageProps> = ({ theme, onNavigate }) => {
   const { t } = useTranslation();
@@ -30,7 +32,7 @@ const CocktailsPage: React.FC<CocktailsPageProps> = ({ theme, onNavigate }) => {
 
   const getImageSrc = (item: MenuItem): string | null => {
     if (item.image?.asset?._ref) return urlFor(item.image).width(400).url();
-    if (item.imageUrl) return item.imageUrl;
+    if (item.image?.imageUrl) return item.image.imageUrl;
     return null;
   };
 

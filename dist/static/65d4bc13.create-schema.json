@@ -57,8 +57,26 @@
                 "type": "string"
               },
               {
+                "options": {
+                  "accept": "image/*"
+                },
+                "fields": [
+                  {
+                    "description": "Paste an image URL (e.g. Unsplash) — shown as fallback when no file is uploaded",
+                    "name": "imageUrl",
+                    "type": "string",
+                    "title": "Or paste external image URL"
+                  }
+                ],
                 "name": "image",
                 "type": "image"
+              },
+              {
+                "initialValue": false,
+                "description": "Enable for items that should appear on their respective preview page",
+                "name": "showOnPreview",
+                "type": "boolean",
+                "title": "Show on Coffee / Cocktails preview page"
               }
             ],
             "type": "object",

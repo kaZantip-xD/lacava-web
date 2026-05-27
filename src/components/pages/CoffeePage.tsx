@@ -15,11 +15,13 @@ interface CoffeePageProps {
 interface MenuItem {
   name: string;
   description?: string;
-  image?: { asset?: { _ref?: string } };
-  imageUrl?: string;
+  image?: {
+    asset?: { _ref?: string };
+    imageUrl?: string;
+  };
 }
 
-const query = groq`*[_type == "menuCategory" && title match "Coffee" && locale == "en"][0].items`;
+const query = groq`*[_type == "menuCategory" && title match "Coffee" && locale == "en"][0].items[showOnPreview == true]`;
 
 const CoffeePage: React.FC<CoffeePageProps> = ({ theme, onNavigate }) => {
   const { t } = useTranslation();
@@ -31,7 +33,7 @@ const CoffeePage: React.FC<CoffeePageProps> = ({ theme, onNavigate }) => {
 
   const getImageSrc = (item: MenuItem): string | null => {
     if (item.image?.asset?._ref) return urlFor(item.image).width(400).url();
-    if (item.imageUrl) return item.imageUrl;
+    if (item.image?.imageUrl) return item.image.imageUrl;
     return null;
   };
 
@@ -53,13 +55,21 @@ const CoffeePage: React.FC<CoffeePageProps> = ({ theme, onNavigate }) => {
               <DynamicGradientCard key={idx} theme={theme}>
                 {src && (
                   <div className='relative h-64 rounded-[inherit] overflow-hidden mb-6'>
-                    <Image
-                      src={src}
-                      alt={item.name}
-                      fill
-                      sizes='(max-w-768px) 100vw, 50vw'
-                      className='object-cover group-hover:scale-105 transition-transform duration-700'
-                    />
+                    {item.image?.asset?._ref ? (
+                      <Image
+                        src={src}
+                        alt={item.name}
+                        fill
+                        sizes='(max-w-768px) 100vw, 50vw'
+                        className='object-cover group-hover:scale-105 transition-transform duration-700'
+                      />
+                    ) : (
+                      <img
+                        src={src}
+                        alt={item.name}
+                        className='absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700'
+                      />
+                    )}
                   </div>
                 )}
                 <div className='p-6'>

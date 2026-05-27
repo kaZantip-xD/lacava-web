@@ -111,50 +111,52 @@ const Header: React.FC<HeaderProps> = ({
         </div>
       </header>
 
-      {/* Mobile menu — sibling of header, animated */}
+{/* Mobile menu — sibling of header, animated */}
       <div
-        className={`fixed inset-0 z-[999] md:hidden transition-all duration-300 ease-in-out ${
+        className={`fixed inset-0 z-[999] md:hidden transition-opacity duration-300 ease-in-out ${
           menuOpen
-            ? "opacity-100 pointer-events-auto"
+            ? "opacity-100 pointer-events-auto backdrop-blur-2xl"
             : "opacity-0 pointer-events-none"
         }`}
+        style={{ backgroundColor: menuOpen ? "rgba(0,0,0,0.8)" : "rgba(0,0,0,0)" }}
       >
-        {/* Backdrop with blur */}
+        {/* Backdrop click */}
+        <div className='absolute inset-0' onClick={close} />
+
+        {/* Top bar — always visible immediately (no transition) */}
         <div
-          className={`absolute inset-0 bg-black/80 backdrop-blur-2xl transition-opacity duration-300 ${
+          className={`relative z-10 flex items-center justify-between h-20 px-4 transition-opacity duration-150 ${
             menuOpen ? "opacity-100" : "opacity-0"
           }`}
-          onClick={close}
-        />
+        >
+          <button
+            onClick={() => handleNav("home")}
+            className='flex items-center gap-2'
+          >
+            <Coffee className='text-orange-500' size={32} />
+            <span className='font-bold text-2xl tracking-tighter text-white'>
+              la cava
+              <span className='text-orange-500'>.</span>
+            </span>
+          </button>
+          <button
+            onClick={close}
+            className='text-white p-1'
+            aria-label='Close menu'
+          >
+            <X size={28} />
+          </button>
+        </div>
 
-        {/* Content panel */}
+        {/* Animated content (nav + footer) */}
         <div
-          className={`relative z-10 flex flex-col h-full transition-all duration-300 ease-out ${
+          className={`relative z-10 flex flex-col flex-1 transition-all duration-300 ease-out delay-75 ${
             menuOpen
               ? "translate-y-0 opacity-100"
               : "translate-y-4 opacity-0"
           }`}
+          style={{ height: "calc(100% - 5rem)" }}
         >
-          <div className='flex items-center justify-between h-20 px-4'>
-            <button
-              onClick={() => handleNav("home")}
-              className='flex items-center gap-2'
-            >
-              <Coffee className='text-orange-500' size={32} />
-              <span className='font-bold text-2xl tracking-tighter text-white'>
-                la cava
-                <span className='text-orange-500'>.</span>
-              </span>
-            </button>
-            <button
-              onClick={close}
-              className='text-white p-1'
-              aria-label='Close menu'
-            >
-              <X size={28} />
-            </button>
-          </div>
-
           <nav className='flex-1 flex flex-col justify-center gap-3 max-w-sm mx-auto w-full'>
             {NavLinks.map((link) => (
               <button
@@ -171,20 +173,20 @@ const Header: React.FC<HeaderProps> = ({
             ))}
           </nav>
 
-<div className='flex items-center justify-center gap-6 py-5 border-t border-white/10'>
-              <a
-                href='#'
-                className='text-white/60 hover:text-white transition-colors p-1'
-              >
-                <Globe size={22} />
-              </a>
-              <a
-                href='#'
-                className='text-white/60 hover:text-white transition-colors p-1'
-              >
-                <Share2 size={22} />
-              </a>
-            </div>
+          <div className='flex items-center justify-center gap-6 py-5 border-t border-white/10'>
+            <a
+              href='#'
+              className='text-white/60 hover:text-white transition-colors p-1'
+            >
+              <Globe size={22} />
+            </a>
+            <a
+              href='#'
+              className='text-white/60 hover:text-white transition-colors p-1'
+            >
+              <Share2 size={22} />
+            </a>
+          </div>
         </div>
       </div>
     </>
