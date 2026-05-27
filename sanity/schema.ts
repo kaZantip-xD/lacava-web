@@ -1,4 +1,5 @@
 import { defineType, defineField } from "sanity";
+import { IconPicker } from "../sanity/components/IconPicker";
 
 const menuCategory = defineType({
   name: "menuCategory",
@@ -22,7 +23,14 @@ const menuCategory = defineType({
       name: "icon",
       title: "Icon",
       type: "string",
-      description: "Options: Utensils, Coffee, Wine, Beer, CupSoda, Apple, Sandwich, IceCream",
+      components: { input: IconPicker },
+    }),
+    defineField({
+      name: "showOnPreviewEnabled",
+      title: "Enable preview checkbox for items",
+      type: "boolean",
+      initialValue: false,
+      description: "When enabled, each item in this category gets a checkbox to appear on Coffee/Cocktails preview pages",
     }),
     defineField({
       name: "order",
@@ -58,10 +66,10 @@ const menuCategory = defineType({
             },
             {
               name: "showOnPreview",
-              title: "Show on Coffee / Cocktails preview page",
+              title: "Show on preview page",
               type: "boolean",
               initialValue: false,
-              description: "Enable for items that should appear on their respective preview page",
+              hidden: ({ document }) => !document?.showOnPreviewEnabled,
             },
           ],
           preview: {

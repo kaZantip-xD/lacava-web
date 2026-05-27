@@ -30,9 +30,15 @@
         "title": "Category Name"
       },
       {
-        "description": "Options: Utensils, Coffee, Wine, Beer, CupSoda, Apple, Sandwich, IceCream",
         "name": "icon",
         "type": "string"
+      },
+      {
+        "initialValue": false,
+        "description": "When enabled, each item in this category gets a checkbox to appear on Coffee/Cocktails preview pages",
+        "name": "showOnPreviewEnabled",
+        "type": "boolean",
+        "title": "Enable preview checkbox for items"
       },
       {
         "name": "order",
@@ -73,10 +79,10 @@
               },
               {
                 "initialValue": false,
-                "description": "Enable for items that should appear on their respective preview page",
+                "hidden": "conditional",
                 "name": "showOnPreview",
                 "type": "boolean",
-                "title": "Show on Coffee / Cocktails preview page"
+                "title": "Show on preview page"
               }
             ],
             "type": "object",

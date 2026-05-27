@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-05-27T18:28:39.526Z",
+  "createdAt": "2026-05-27T19:11:35.996Z",
   "studioVersion": "5.27.0",
   "version": 3,
   "workspaces": [
@@ -13,7 +13,7 @@
       },
       "name": "default",
       "projectId": "2vb3njwv",
-      "schema": "65d4bc13.create-schema.json",
+      "schema": "be136ac3.create-schema.json",
       "title": "La Cava CMS",
       "tools": "a1fd46b5.create-tools.json"
     }
