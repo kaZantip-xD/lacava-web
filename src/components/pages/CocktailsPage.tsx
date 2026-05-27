@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from "react";
 import DynamicGradientCard from "@/components/GradientCard";
 import { Theme, Page } from "@/types";
-import client from "../../../tina/__generated__/client";
+import { client, urlFor } from "@/lib/sanity";
+import groq from "groq";
 import { useTranslation } from "react-i18next";
 
 interface CocktailsPageProps {
@@ -10,32 +11,28 @@ interface CocktailsPageProps {
   onNavigate: (page: Page) => void;
 }
 
-interface ItemData {
+interface MenuItem {
   name: string;
   description?: string;
-  image?: string;
+  image?: { asset?: { _ref?: string } };
+  imageUrl?: string;
 }
 
-interface CategoryData {
-  id: string;
-  title: string;
-  items: ItemData[];
-}
+const query = groq`*[_type == "menuCategory" && title match "Cocktails" && locale == "en"][0].items`;
 
 const CocktailsPage: React.FC<CocktailsPageProps> = ({ theme, onNavigate }) => {
   const { t } = useTranslation();
-  const [items, setItems] = useState<ItemData[]>([]);
+  const [items, setItems] = useState<MenuItem[]>([]);
 
   useEffect(() => {
-    client.queries.menuCategoryConnection({ last: 50 }).then((res) => {
-      const nodes =
-        res.data.menuCategoryConnection.edges?.map(
-          (e) => e?.node as unknown as CategoryData,
-        ) ?? [];
-      const cocktails = nodes.find((c) => c.id.includes("/cocktails"));
-      setItems(cocktails?.items ?? []);
-    });
+    client.fetch<MenuItem[]>(query).then((data) => setItems(data ?? []));
   }, []);
+
+  const getImageSrc = (item: MenuItem): string | null => {
+    if (item.image?.asset?._ref) return urlFor(item.image).width(400).url();
+    if (item.imageUrl) return item.imageUrl;
+    return null;
+  };
 
   return (
     <div className='pt-32 pb-20'>
@@ -49,22 +46,29 @@ const CocktailsPage: React.FC<CocktailsPageProps> = ({ theme, onNavigate }) => {
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-          {items.map((item, idx) => (
-            <DynamicGradientCard key={idx} theme={theme}>
-              <div className='relative h-64 rounded-[inherit] overflow-hidden mb-6'>
-                <img
-                  src={item.image ?? ""}
-                  alt={item.name}
-                  className='absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700'
-                />
-                <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent'></div>
-              </div>
-              <div className='p-6'>
-                <h3 className='text-2xl font-bold mb-2'>{item.name}</h3>
-                <p className='text-gray-400 text-sm leading-relaxed'>{item.description}</p>
-              </div>
-            </DynamicGradientCard>
-          ))}
+          {items.map((item, idx) => {
+            const src = getImageSrc(item);
+            return (
+              <DynamicGradientCard key={idx} theme={theme}>
+                {src ? (
+                  <div className='relative h-64 rounded-[inherit] overflow-hidden mb-6'>
+                    <img
+                      src={src}
+                      alt={item.name}
+                      className='absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700'
+                    />
+                    <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent'></div>
+                  </div>
+                ) : (
+                  <div className='h-24'></div>
+                )}
+                <div className='p-6'>
+                  <h3 className='text-2xl font-bold mb-2'>{item.name}</h3>
+                  <p className='text-gray-400 text-sm leading-relaxed'>{item.description}</p>
+                </div>
+              </DynamicGradientCard>
+            );
+          })}
         </div>
       </div>
     </div>

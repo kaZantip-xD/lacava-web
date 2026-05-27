@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { Theme, Page } from "@/types";
-import client from "../../../tina/__generated__/client";
+import { client } from "@/lib/sanity";
+import groq from "groq";
 import { iconMap } from "@/lib/iconMap";
 import { useTranslation } from "react-i18next";
 
@@ -11,39 +12,27 @@ interface MenuPageProps {
   onNavigate: (page: Page) => void;
 }
 
-interface ItemData {
+interface MenuItem {
   name: string;
   description?: string;
   price?: string;
 }
 
 interface CategoryData {
-  id: string;
-  locale: string;
+  _id: string;
   title: string;
   icon: string;
-  order: number;
-  items: ItemData[];
+  items: MenuItem[];
 }
+
+const query = groq`*[_type == "menuCategory" && locale == "en"] | order(order asc) { _id, title, icon, items }`;
 
 const MenuPage: React.FC<MenuPageProps> = ({ theme, onNavigate }) => {
   const { t } = useTranslation();
   const [categories, setCategories] = useState<CategoryData[]>([]);
 
   useEffect(() => {
-    client.queries
-      .menuCategoryConnection({ sort: "order", last: 50 })
-      .then((res) => {
-        const nodes =
-          res.data.menuCategoryConnection.edges?.map(
-            (e) => e?.node as unknown as CategoryData,
-          ) ?? [];
-        setCategories(
-          nodes
-            .filter((c) => c.locale === "en")
-            .sort((a, b) => a.order - b.order),
-        );
-      });
+    client.fetch<CategoryData[]>(query).then(setCategories);
   }, []);
 
   return (
@@ -57,7 +46,7 @@ const MenuPage: React.FC<MenuPageProps> = ({ theme, onNavigate }) => {
           {categories.map((cat) => {
             if (!cat.items || cat.items.length === 0) return null;
             return (
-              <div key={cat.id}>
+              <div key={cat._id}>
                 <div className='flex items-center gap-3 mb-8 pb-4 border-b border-emerald-900/50'>
                   {iconMap[cat.icon]?.(theme.accent)}
                   <h2 className='text-3xl font-bold'>{cat.title}</h2>
@@ -71,19 +60,11 @@ const MenuPage: React.FC<MenuPageProps> = ({ theme, onNavigate }) => {
                       <div className='absolute inset-0 rounded-xl bg-gradient-to-br from-emerald-500 to-transparent opacity-0 group-hover:opacity-20 group-active:opacity-20 transition-opacity duration-500 pointer-events-none' />
                       <div className='relative z-10'>
                         <div className='flex justify-between items-baseline mb-2'>
-                          <h3 className='text-xl font-semibold'>
-                            {item.name}
-                          </h3>
+                          <h3 className='text-xl font-semibold'>{item.name}</h3>
                           <div className='border-b border-dotted border-gray-700 flex-grow mx-4 relative top-[-4px]'></div>
-                          <span
-                            className={`${theme.accent} font-bold text-lg`}
-                          >
-                            {item.price}
-                          </span>
+                          <span className={`${theme.accent} font-bold text-lg`}>{item.price}</span>
                         </div>
-                        <p className='text-gray-400 text-sm'>
-                          {item.description}
-                        </p>
+                        <p className='text-gray-400 text-sm'>{item.description}</p>
                       </div>
                     </li>
                   ))}

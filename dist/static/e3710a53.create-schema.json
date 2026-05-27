@@ -1,0 +1,77 @@
+[
+  {
+    "fields": [
+      {
+        "options": {
+          "list": [
+            "en",
+            "ua"
+          ]
+        },
+        "initialValue": "en",
+        "name": "locale",
+        "type": "string",
+        "title": "Language"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Category Name"
+      },
+      {
+        "description": "Options: Utensils, Coffee, Wine, Beer, CupSoda, Apple, Sandwich, IceCream",
+        "name": "icon",
+        "type": "string"
+      },
+      {
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "title": "Description / Ingredients"
+              },
+              {
+                "name": "price",
+                "type": "string"
+              },
+              {
+                "name": "image",
+                "type": "image"
+              }
+            ],
+            "type": "object",
+            "name": "item"
+          }
+        ],
+        "name": "items",
+        "type": "array",
+        "title": "Menu Items"
+      }
+    ],
+    "name": "menuCategory",
+    "type": "document",
+    "title": "Menu Categories"
+  }
+]
