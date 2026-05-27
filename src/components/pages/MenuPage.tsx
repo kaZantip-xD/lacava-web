@@ -55,14 +55,14 @@ const MenuPage: React.FC<MenuPageProps> = ({ theme, onNavigate }) => {
                   {cat.items.map((item, idx) => (
                     <li
                       key={idx}
-                      className='relative rounded-xl p-4 transition-all duration-300 hover:bg-white/[0.03] active:bg-white/[0.03] cursor-default overflow-hidden group'
+                      className='relative rounded-xl p-4 transition-all duration-300 hover:bg-white/[0.03] active:bg-white/[0.03] cursor-default overflow-hidden group flex flex-col justify-center min-h-[95px]'
                     >
                       <div className='absolute inset-0 rounded-xl bg-gradient-to-br from-emerald-500 to-transparent opacity-0 group-hover:opacity-20 group-active:opacity-20 transition-opacity duration-500 pointer-events-none' />
                       <div className='relative z-10'>
                         <div className='flex justify-between items-baseline mb-2'>
                           <h3 className='text-xl font-semibold'>{item.name}</h3>
                           <div className='border-b border-dotted border-gray-700 flex-grow mx-4 relative top-[-4px]'></div>
-                          <span className={`${theme.accent} font-bold text-lg`}>{item.price}</span>
+                          <span className={`${theme.accent} font-bold text-lg whitespace-nowrap`}>{item.price}</span>
                         </div>
                         <p className='text-gray-400 text-sm'>{item.description}</p>
                       </div>

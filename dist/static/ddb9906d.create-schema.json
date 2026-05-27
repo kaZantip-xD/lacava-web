@@ -178,19 +178,12 @@
         "name": "features",
         "type": "array",
         "title": "Feature Cards"
-      }
-    ],
-    "name": "homePageSettings",
-    "type": "document",
-    "title": "🏠 Home Page"
-  },
-  {
-    "fields": [
+      },
       {
         "description": "Only visible here in the admin",
-        "name": "title",
+        "name": "experienceSectionTitle",
         "type": "string",
-        "title": "Internal Section Title"
+        "title": "Internal section title"
       },
       {
         "of": [
@@ -238,13 +231,14 @@
             "name": "card"
           }
         ],
-        "name": "cards",
-        "type": "array"
+        "name": "experienceCards",
+        "type": "array",
+        "title": "Experience Cards (bottom section)"
       }
     ],
-    "name": "experienceCards",
+    "name": "homePageSettings",
     "type": "document",
-    "title": "🎯 Experience Cards"
+    "title": "🏠 Home Page"
   },
   {
     "fields": [

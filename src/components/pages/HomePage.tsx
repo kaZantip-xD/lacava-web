@@ -36,36 +36,23 @@ interface HomeData {
   heroImage?: { asset?: { _ref?: string }; imageUrl?: string };
   heroButtons: HeroButton[];
   features: FeatureData[];
-}
-
-interface ExpCard {
-  title: string;
-  description: string;
-  linkLabel: string;
-  linkPage: string;
-  image?: { asset?: { _ref?: string }; imageUrl?: string };
-}
-
-interface ExpData {
-  cards: ExpCard[];
+  experienceCards: {
+    title: string;
+    description: string;
+    linkLabel: string;
+    linkPage: string;
+    image?: { asset?: { _ref?: string }; imageUrl?: string };
+  }[];
 }
 
 const homeQuery = groq`*[_type == "homePageSettings"][0]`;
-const expQuery = groq`*[_type == "experienceCards"][0]`;
 
 const HomePage: React.FC<HomePageProps> = ({ theme, onNavigate }) => {
   const { t } = useTranslation();
   const [home, setHome] = useState<HomeData | null>(null);
-  const [exp, setExp] = useState<ExpData | null>(null);
 
   useEffect(() => {
-    Promise.all([
-      client.fetch<HomeData>(homeQuery),
-      client.fetch<ExpData>(expQuery),
-    ]).then(([h, e]) => {
-      setHome(h);
-      setExp(e);
-    });
+    client.fetch<HomeData>(homeQuery).then(setHome);
   }, []);
 
   const getImgSrc = (img?: { asset?: { _ref?: string }; imageUrl?: string }) => {
@@ -137,11 +124,11 @@ const HomePage: React.FC<HomePageProps> = ({ theme, onNavigate }) => {
         </section>
       )}
 
-      {(exp?.cards?.length ?? 0) > 0 && (
+      {(home?.experienceCards?.length ?? 0) > 0 && (
         <section className='py-20 bg-black/20'>
           <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
             <div className='grid md:grid-cols-2 gap-8'>
-              {exp!.cards.map((card, idx) => {
+              {home!.experienceCards.map((card, idx) => {
                 const src = getImgSrc(card.image);
                 return (
                   <DynamicGradientCard key={idx} theme={theme}>

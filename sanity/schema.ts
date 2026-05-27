@@ -120,18 +120,10 @@ const homePageSettings = defineType({
         preview: { select: { title: "title", subtitle: "icon" } },
       }],
     }),
-  ],
-});
-
-const experienceCards = defineType({
-  name: "experienceCards",
-  title: "🎯 Experience Cards",
-  type: "document",
-  fields: [
-    defineField({ name: "title", title: "Internal Section Title", type: "string", description: "Only visible here in the admin" }),
+    defineField({ name: "experienceSectionTitle", title: "Internal section title", type: "string", description: "Only visible here in the admin" }),
     defineField({
-      name: "cards",
-      title: "Cards",
+      name: "experienceCards",
+      title: "Experience Cards (bottom section)",
       type: "array",
       of: [{
         type: "object",
@@ -218,4 +210,4 @@ const contactSettings = defineType({
   ],
 });
 
-export const schemaTypes = [menuCategory, homePageSettings, experienceCards, aboutPageSettings, contactSettings];
+export const schemaTypes = [menuCategory, homePageSettings, aboutPageSettings, contactSettings];
