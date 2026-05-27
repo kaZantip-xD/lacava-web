@@ -1,4 +1,4 @@
-import { Utensils, Coffee, Wine, Beer, CupSoda, Apple, Sandwich, IceCream } from "lucide-react";
+import { Utensils, Coffee, Wine, Beer, CupSoda, Apple, Sandwich, IceCream, Pizza, Salad, Fish, Beef, CakeSlice, Egg, ChefHat, CookingPot, Martini, GlassWater, Milk, Grape, Citrus, Cherry, Popcorn, Thermometer, BottleWine, Award, MapPin, Gift, Star, Heart, ThumbsUp, Sparkles, Gem, Shield, Zap, Clock, Sun } from "lucide-react";
 import { ReactNode } from "react";
 
 export const iconMap: Record<string, (className: string) => ReactNode> = {
@@ -10,4 +10,33 @@ export const iconMap: Record<string, (className: string) => ReactNode> = {
   Apple: (className) => <Apple className={className} />,
   Sandwich: (className) => <Sandwich className={className} />,
   IceCream: (className) => <IceCream className={className} />,
+  Pizza: (className) => <Pizza className={className} />,
+  Salad: (className) => <Salad className={className} />,
+  Fish: (className) => <Fish className={className} />,
+  Beef: (className) => <Beef className={className} />,
+  CakeSlice: (className) => <CakeSlice className={className} />,
+  Egg: (className) => <Egg className={className} />,
+  ChefHat: (className) => <ChefHat className={className} />,
+  CookingPot: (className) => <CookingPot className={className} />,
+  Martini: (className) => <Martini className={className} />,
+  GlassWater: (className) => <GlassWater className={className} />,
+  Milk: (className) => <Milk className={className} />,
+  Grape: (className) => <Grape className={className} />,
+  Citrus: (className) => <Citrus className={className} />,
+  Cherry: (className) => <Cherry className={className} />,
+  Popcorn: (className) => <Popcorn className={className} />,
+  Thermometer: (className) => <Thermometer className={className} />,
+  BottleWine: (className) => <BottleWine className={className} />,
+  Award: (className) => <Award className={className} />,
+  MapPin: (className) => <MapPin className={className} />,
+  Gift: (className) => <Gift className={className} />,
+  Star: (className) => <Star className={className} />,
+  Heart: (className) => <Heart className={className} />,
+  ThumbsUp: (className) => <ThumbsUp className={className} />,
+  Sparkles: (className) => <Sparkles className={className} />,
+  Gem: (className) => <Gem className={className} />,
+  Shield: (className) => <Shield className={className} />,
+  Zap: (className) => <Zap className={className} />,
+  Clock: (className) => <Clock className={className} />,
+  Sun: (className) => <Sun className={className} />,
 };

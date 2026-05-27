@@ -1,0 +1,382 @@
+[
+  {
+    "fields": [
+      {
+        "options": {
+          "list": [
+            "en",
+            "ua"
+          ]
+        },
+        "initialValue": "en",
+        "name": "locale",
+        "type": "string",
+        "title": "Language"
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "title": "Category Name"
+      },
+      {
+        "name": "icon",
+        "type": "string"
+      },
+      {
+        "initialValue": false,
+        "name": "showOnPreviewEnabled",
+        "type": "boolean",
+        "title": "Enable preview checkbox for items"
+      },
+      {
+        "name": "order",
+        "type": "number",
+        "title": "Display Order"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "title": "Description / Ingredients"
+              },
+              {
+                "name": "price",
+                "type": "string"
+              },
+              {
+                "options": {
+                  "accept": "image/*"
+                },
+                "fields": [
+                  {
+                    "name": "imageUrl",
+                    "type": "string",
+                    "title": "Or paste external image URL"
+                  }
+                ],
+                "name": "image",
+                "type": "image"
+              },
+              {
+                "initialValue": false,
+                "hidden": "conditional",
+                "name": "showOnPreview",
+                "type": "boolean",
+                "title": "Show on preview page"
+              }
+            ],
+            "type": "object",
+            "name": "item"
+          }
+        ],
+        "name": "items",
+        "type": "array",
+        "title": "Menu Items"
+      }
+    ],
+    "name": "menuCategory",
+    "type": "document",
+    "title": "Menu Categories"
+  },
+  {
+    "fields": [
+      {
+        "name": "heroTitleLine1",
+        "type": "string"
+      },
+      {
+        "name": "heroTitleLine2",
+        "type": "string",
+        "title": "Hero Title Line 2 (highlighted)"
+      },
+      {
+        "name": "heroSubtitle",
+        "type": "text"
+      },
+      {
+        "options": {
+          "accept": "image/*"
+        },
+        "fields": [
+          {
+            "name": "imageUrl",
+            "type": "string",
+            "title": "Or paste external image URL"
+          }
+        ],
+        "name": "heroImage",
+        "type": "image"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "options": {
+                  "list": [
+                    "coffee",
+                    "cocktails",
+                    "menu",
+                    "about",
+                    "contact"
+                  ]
+                },
+                "name": "linkPage",
+                "type": "string"
+              },
+              {
+                "description": "Leave empty for no icon",
+                "name": "icon",
+                "type": "string"
+              },
+              {
+                "initialValue": true,
+                "name": "showIcon",
+                "type": "boolean",
+                "title": "Show icon?"
+              }
+            ],
+            "type": "object",
+            "name": "button"
+          }
+        ],
+        "name": "heroButtons",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "name": "icon",
+                "type": "string"
+              }
+            ],
+            "type": "object",
+            "name": "feature"
+          }
+        ],
+        "name": "features",
+        "type": "array",
+        "title": "Feature Cards"
+      }
+    ],
+    "name": "homePageSettings",
+    "type": "document",
+    "title": "🏠 Home Page"
+  },
+  {
+    "fields": [
+      {
+        "description": "Only visible here in the admin",
+        "name": "title",
+        "type": "string",
+        "title": "Internal Section Title"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "name": "linkLabel",
+                "type": "string"
+              },
+              {
+                "options": {
+                  "list": [
+                    "coffee",
+                    "cocktails",
+                    "menu"
+                  ]
+                },
+                "name": "linkPage",
+                "type": "string"
+              },
+              {
+                "options": {
+                  "accept": "image/*"
+                },
+                "fields": [
+                  {
+                    "name": "imageUrl",
+                    "type": "string",
+                    "title": "Or paste external image URL"
+                  }
+                ],
+                "name": "image",
+                "type": "image"
+              }
+            ],
+            "type": "object",
+            "name": "card"
+          }
+        ],
+        "name": "cards",
+        "type": "array"
+      }
+    ],
+    "name": "experienceCards",
+    "type": "document",
+    "title": "🎯 Experience Cards"
+  },
+  {
+    "fields": [
+      {
+        "name": "headline",
+        "type": "string",
+        "title": "Section Title"
+      },
+      {
+        "options": {
+          "accept": "image/*"
+        },
+        "fields": [
+          {
+            "name": "imageUrl",
+            "type": "string",
+            "title": "Or paste external image URL"
+          }
+        ],
+        "name": "storyImage",
+        "type": "image"
+      },
+      {
+        "of": [
+          {
+            "type": "text",
+            "name": "paragraph"
+          }
+        ],
+        "name": "storyParagraphs",
+        "type": "array"
+      },
+      {
+        "name": "valuesHeadline",
+        "type": "string",
+        "title": "Values Section Title"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "name": "icon",
+                "type": "string"
+              }
+            ],
+            "type": "object",
+            "name": "value"
+          }
+        ],
+        "name": "values",
+        "type": "array",
+        "title": "Values Cards"
+      },
+      {
+        "name": "findUsHeadline",
+        "type": "string",
+        "title": "\"Find Us\" Title"
+      },
+      {
+        "options": {
+          "accept": "image/*"
+        },
+        "fields": [
+          {
+            "name": "imageUrl",
+            "type": "string",
+            "title": "Or paste external image URL"
+          }
+        ],
+        "name": "mapImage",
+        "type": "image"
+      },
+      {
+        "name": "ctaText",
+        "type": "string",
+        "title": "CTA Button Text"
+      },
+      {
+        "options": {
+          "list": [
+            "contact",
+            "menu",
+            "about"
+          ]
+        },
+        "name": "ctaLinkPage",
+        "type": "string",
+        "title": "CTA Link Page"
+      }
+    ],
+    "name": "aboutPageSettings",
+    "type": "document",
+    "title": "📖 About Us"
+  },
+  {
+    "fields": [
+      {
+        "name": "pageTitle",
+        "type": "string"
+      },
+      {
+        "name": "pageSubtitle",
+        "type": "text"
+      },
+      {
+        "name": "formTitle",
+        "type": "string"
+      },
+      {
+        "name": "address",
+        "type": "string"
+      },
+      {
+        "name": "phone",
+        "type": "string"
+      },
+      {
+        "name": "email",
+        "type": "string"
+      }
+    ],
+    "name": "contactSettings",
+    "type": "document",
+    "title": "📞 Contact Info"
+  }
+]
